@@ -4,3 +4,6 @@ out/
 frames/
 *.log
 .DS_Store
+samples/*.mp4
+samples/*.mkv
+samples/*.mov
