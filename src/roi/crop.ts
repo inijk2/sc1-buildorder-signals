@@ -78,3 +78,17 @@ export async function resizeGray(image: GrayImage, w: number, h: number): Promis
 
   return { width: info.width, height: info.height, data: new Uint8Array(data) };
 }
+
+export function variance(image: GrayImage) {
+  const n = image.data.length;
+  if (n === 0) return 0;
+  let sum = 0;
+  for (let i = 0; i < n; i += 1) sum += image.data[i];
+  const mean = sum / n;
+  let acc = 0;
+  for (let i = 0; i < n; i += 1) {
+    const d = image.data[i] - mean;
+    acc += d * d;
+  }
+  return acc / n;
+}

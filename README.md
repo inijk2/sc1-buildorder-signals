@@ -29,6 +29,16 @@ pnpm dev -- --input sample.mp4 --out out --profile profiles/profile_rm_1080p.jso
 pnpm dev -- --input <video.mp4> --out <out_dir> --profile <profile.json> [--fps 2] [--start 0] [--end 420]
 ```
 
+## Digit Templates (Quick Helper)
+Extract candidate digit crops from the supply boxes:
+```bash
+pnpm extract:digits -- --input samples/yt_480p.mp4 --profile profiles/profile_rm_854x480.json --fps 1 --start 0 --end 120
+```
+
+It writes candidates to `assets/templates/digits/candidates/` with a `manifest.json`.
+Manually pick good samples and rename them to `0.png` ... `9.png` under
+`assets/templates/digits/`.
+
 ## Repo structure
 ```
 src/
