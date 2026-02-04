@@ -56,6 +56,9 @@ async function main() {
   const start = getNumber("--start", 0);
   const end = getNumber("--end", 120);
   const perBox = getNumber("--per-box", 12);
+  const frameStart = getNumber("--frame-start", 1);
+  const frameOnly = getNumber("--frame-only", -1);
+  const mode = getArg("--mode", "top");
 
   if (!input) {
     console.error("Missing --input <video.mp4>");
@@ -75,7 +78,11 @@ async function main() {
 
   const best: Candidate[] = [];
 
-  for (const frame of frames) {
+  for (let i = 0; i < frames.length; i += 1) {
+    const frameIndex = i + 1;
+    if (frameOnly > 0 && frameIndex !== frameOnly) continue;
+    if (frameIndex < frameStart) continue;
+    const frame = frames[i];
     const boxes: { boxType: "used" | "total"; index: number; roi: Roi }[] = [];
     profile.supply.used_boxes.forEach((roi, index) => boxes.push({ boxType: "used", index, roi }));
     profile.supply.total_boxes.forEach((roi, index) => boxes.push({ boxType: "total", index, roi }));
@@ -85,9 +92,23 @@ async function main() {
       const score = variance(image);
       const outFile = join(
         outDir,
-        `${box.boxType}_${box.index}_t${frame.t.toFixed(1).replace(".", "_")}.png`
+        `${box.boxType}_${box.index}_f${String(frameIndex).padStart(4, "0")}_t${frame.t
+          .toFixed(1)
+          .replace(".", "_")}.png`
       );
-      pushTopN(best, { score, t: frame.t, frame: frame.path, boxType: box.boxType, index: box.index, roi: box.roi, outFile }, perBox);
+      if (mode === "all") {
+        best.push({
+          score,
+          t: frame.t,
+          frame: frame.path,
+          boxType: box.boxType,
+          index: box.index,
+          roi: box.roi,
+          outFile
+        });
+      } else {
+        pushTopN(best, { score, t: frame.t, frame: frame.path, boxType: box.boxType, index: box.index, roi: box.roi, outFile }, perBox);
+      }
     }
   }
 

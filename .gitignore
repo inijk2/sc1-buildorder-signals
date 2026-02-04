@@ -7,3 +7,8 @@ frames/
 samples/*.mp4
 samples/*.mkv
 samples/*.mov
+samples/*.jpg
+samples/*.png
+samples/*.txt
+samples/_*/
+assets/templates/digits/candidates/

@@ -13,6 +13,8 @@ export type SupplyReading = {
   conf: number;
 };
 
+const MIN_ACTIVE_VARIANCE = 15;
+
 export async function loadDigitTemplates(dir: string): Promise<DigitTemplate[]> {
   const files = readdirSync(dir).filter(name => [".png", ".jpg", ".jpeg"].includes(extname(name)));
   const templates: DigitTemplate[] = [];
@@ -26,6 +28,19 @@ export async function loadDigitTemplates(dir: string): Promise<DigitTemplate[]> 
   }
 
   return templates;
+}
+
+function isActiveDigit(image: GrayImage) {
+  let sum = 0;
+  for (let i = 0; i < image.data.length; i += 1) sum += image.data[i];
+  const mean = sum / image.data.length;
+  let acc = 0;
+  for (let i = 0; i < image.data.length; i += 1) {
+    const d = image.data[i] - mean;
+    acc += d * d;
+  }
+  const variance = acc / image.data.length;
+  return variance >= MIN_ACTIVE_VARIANCE;
 }
 
 async function matchDigit(image: GrayImage, templates: DigitTemplate[]): Promise<{ digit: number | null; conf: number }>
@@ -61,6 +76,10 @@ export async function readSupply(
 
   for (const box of supplyRoi.used_boxes) {
     const image = await loadGray(framePath, box);
+    if (!isActiveDigit(image)) {
+      conf = Math.min(conf, 0.2);
+      continue;
+    }
     const match = await matchDigit(image, templates);
     if (match.digit === null) {
       conf = Math.min(conf, match.conf);
@@ -72,6 +91,10 @@ export async function readSupply(
 
   for (const box of supplyRoi.total_boxes) {
     const image = await loadGray(framePath, box);
+    if (!isActiveDigit(image)) {
+      conf = Math.min(conf, 0.2);
+      continue;
+    }
     const match = await matchDigit(image, templates);
     if (match.digit === null) {
       conf = Math.min(conf, match.conf);

@@ -10,6 +10,7 @@
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/cli.ts",
     "extract:digits": "tsx scripts/extract_digits.ts",
+    "calibrate:supply": "tsx scripts/calibrate_supply.ts",
     "check": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
   },

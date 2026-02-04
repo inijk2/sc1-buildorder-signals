@@ -39,6 +39,10 @@ It writes candidates to `assets/templates/digits/candidates/` with a `manifest.j
 Manually pick good samples and rename them to `0.png` ... `9.png` under
 `assets/templates/digits/`.
 
+Options:
+- `--frame-only N` to extract only a specific frame index.
+- `--mode all` to dump every frame crop (instead of top-N by variance).
+
 ## Repo structure
 ```
 src/
