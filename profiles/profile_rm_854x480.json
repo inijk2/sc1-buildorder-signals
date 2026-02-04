@@ -1,0 +1,74 @@
+{
+    "name":  "rm_854x480_v1",
+    "resolution":  {
+                       "h":  480,
+                       "w":  854
+                   },
+    "note":  "Manually refined for 854x480 from sample frame. Verify ROI manually.",
+    "supply":  {
+                   "h":  28,
+                   "total_boxes":  [
+                                       {
+                                           "x":  810,
+                                           "y":  6,
+                                           "w":  12,
+                                           "h":  18
+                                       },
+                                       {
+                                           "x":  826,
+                                           "y":  6,
+                                           "w":  12,
+                                           "h":  18
+                                       },
+                                       {
+                                           "x":  842,
+                                           "y":  6,
+                                           "w":  12,
+                                           "h":  18
+                                       }
+                                   ],
+                   "y":  0,
+                   "x":  740,
+                   "w":  120,
+                   "used_boxes":  [
+                                      {
+                                          "x":  760,
+                                          "y":  6,
+                                          "w":  12,
+                                          "h":  18
+                                      },
+                                      {
+                                          "x":  776,
+                                          "y":  6,
+                                          "w":  12,
+                                          "h":  18
+                                      },
+                                      {
+                                          "x":  792,
+                                          "y":  6,
+                                          "w":  12,
+                                          "h":  18
+                                      }
+                                  ]
+               },
+    "selection_panel":  {
+                            "x":  574,
+                            "y":  284,
+                            "w":  262,
+                            "h":  160
+                        },
+    "production_queue":  {
+                             "y":  258,
+                             "w":  320,
+                             "h":  53,
+                             "slots":  {
+                                           "slot_h":  28,
+                                           "gap":  4,
+                                           "start_x":  9,
+                                           "start_y":  4,
+                                           "slot_w":  28,
+                                           "count":  5
+                                       },
+                             "x":  516
+                         }
+}
