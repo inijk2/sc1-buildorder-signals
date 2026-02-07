@@ -4,50 +4,38 @@
     "h": 480,
     "w": 854
   },
-  "note": "Auto-calibrated from frame using green/white masks. Verify ROI manually.",
+  "note": "Auto-calibrated from frame_000107 (2-digit boxes only, relaxed masks). Verify ROI manually.",
   "supply": {
     "x": 700,
     "y": 0,
-    "w": 150,
-    "h": 30,
+    "w": 151,
+    "h": 31,
     "used_boxes": [
       {
-        "x": 768,
-        "y": 3,
-        "w": 10,
-        "h": 14
+        "x": 789,
+        "y": 5,
+        "w": 8,
+        "h": 12
       },
       {
-        "x": 780,
+        "x": 793,
         "y": 3,
-        "w": 10,
-        "h": 14
-      },
-      {
-        "x": 792,
-        "y": 3,
-        "w": 10,
-        "h": 14
+        "w": 8,
+        "h": 12
       }
     ],
     "total_boxes": [
       {
-        "x": 793,
-        "y": 4,
-        "w": 7,
-        "h": 10
+        "x": 825,
+        "y": 2,
+        "w": 8,
+        "h": 12
       },
       {
-        "x": 802,
-        "y": 4,
-        "w": 7,
-        "h": 10
-      },
-      {
-        "x": 818,
-        "y": 4,
-        "w": 7,
-        "h": 10
+        "x": 833,
+        "y": 2,
+        "w": 8,
+        "h": 12
       }
     ]
   },
