@@ -77,7 +77,7 @@ export async function runPipeline(opts: PipelineOptions): Promise<SignalOutput> 
   const warnings: string[] = [];
   const digitTemplates = await loadDigitTemplates(resolve("assets/templates/digits"));
   const queueTemplates = await loadQueueTemplates(resolve("assets/templates/queue"));
-  if (digitTemplates.length === 0) warnings.push("digit_templates_empty");
+  if (digitTemplates.used.length + digitTemplates.total.length === 0) warnings.push("digit_templates_empty");
   if (queueTemplates.length === 0) warnings.push("queue_templates_empty");
 
   const frames = await decodeFrames({
